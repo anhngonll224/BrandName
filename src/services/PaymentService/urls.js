@@ -1,0 +1,6 @@
+export const apiPaymentDossier = "Payment/PaymentDossier"
+export const apiAcceptPaymentDossier = "Payment/AcceptPaymentDossier"
+export const apiReportPaymentDossier = "Payment/ReportPaymentDossier"
+export const apiRefusePaymentDossier = "Payment/RefusePaymentDossier"
+export const apiGetDetailPaymentDossier = "Payment/GetDetailPaymentDossier"
+export const apiGetPaymentDossier = "Payment/GetPaymentDossier"

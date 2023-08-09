@@ -1,0 +1,35 @@
+deploy-fe-dev:
+  script:
+    - echo "Start build dev"
+    - rm -rf node_modules
+    - rm -f yarn.lock
+    - npm cache clear --force
+    - export NODE_OPTIONS=--openssl-legacy-provider
+    - npm install --force
+    - CI='' npm run build
+    - echo "End build dev"
+    - find /home/ubuntu/BRANDNAME/02.FE/* -type f -not -name 'config.js' -delete
+    - rsync -r --exclude 'config.js' ./build/* /home/ubuntu/BRANDNAME/02.FE
+  only:
+    - dev
+  tags:
+    - linux
+  when: always
+
+  # deploy-fe-test:
+  # script:
+  #   - echo "Start build test"
+  #   - rm -rf node_modules
+  #   - rm -f yarn.lock
+  #   - npm cache clear --force
+  #   - export NODE_OPTIONS=--openssl-legacy-provider
+  #   - npm install --force
+  #   - CI='' npm run build
+  #   - echo "End build test"
+  #   - find /home/vncadmin/ubuntu/BRANDNAME/02.FE/* -type f -not -name 'config.js' -delete
+  #   - rsync -r --exclude 'config.js' ./build/* /home/vncadmin/ubuntu/BRANDNAME/02.FE
+  # only:
+  #   - test
+  # tags:
+  #   - linux
+  # when: always
